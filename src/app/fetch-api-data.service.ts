@@ -6,7 +6,6 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { userInfo } from 'os';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movyis.herokuapp.com/';
@@ -15,7 +14,7 @@ const apiUrl = 'https://movyis.herokuapp.com/';
   providedIn: 'root'
 })
 
-export class UserRegistrationService {
+export class FetchApiDataService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
