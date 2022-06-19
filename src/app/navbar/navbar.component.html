@@ -1,0 +1,13 @@
+<mat-toolbar>
+	<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+		<mat-icon>menu</mat-icon>
+	</button>
+	<span style="background-color: white; width: 150px; font-weight: 600;">movyis</span>
+	<span style="background-color: blue; width: 20px;" class="example-spacer"></span>
+	<div style="background-color: aqua;" class="navbar-buttons">
+		<button mat-raised-button color="primary" (click)="openProfilePage()" style="margin-right: 10px;">
+			Profile
+		</button>
+		<app-logout *ngIf="condition"></app-logout>
+	</div>
+</mat-toolbar>

@@ -18,14 +18,44 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+// src/app/app.module.ts
+import { RouterModule, Routes } from '@angular/router';
+import { LogoutComponent } from './logout/logout.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
+import { GenreComponent } from './genre/genre.component';
+import { DirectorComponent } from './director/director.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    MovieCardComponent,
+    WelcomePageComponent,
+    LogoutComponent,
+    NavbarComponent,
+    UserProfileComponent,
+    EditUserProfileComponent,
+    GenreComponent,
+    DirectorComponent,
+    MovieDetailsComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -37,6 +67,8 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
     MatCardModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule
 
   ],
   providers: [],

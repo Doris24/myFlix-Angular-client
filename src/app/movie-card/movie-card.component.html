@@ -1,0 +1,24 @@
+<mat-card *ngFor="let movie of movies; let i=index;">
+	<mat-dialog-content>
+		<mat-card-title>{{movie.Title}}</mat-card-title>
+		<mat-card-subtitle><img src={{movie.ImagePath}} /></mat-card-subtitle>
+		<p>{{movie.Description}} </p>
+		<p>
+			<b>Genre: </b>
+			<button class="movie-button" mat-flat-button
+				(click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)">
+				{{movie.Genre.Name}}
+			</button>
+			<br>
+			<b>Director: </b>
+			<button class="movie-button" mat-flat-button
+				(click)="openDirectorDialog(movie.Director.Name, movie.Director.Birthday, movie.Director.Bio)">
+				{{movie.Director.Name}}
+			</button>
+		</p>
+		<button mat-raised-button
+			(click)="openMovieDetailsDialog(movie.Title, movie.ImagePath, movie.Description, movie.Genre.Name, movie.Director.Name)">
+			Details
+		</button>
+	</mat-dialog-content>
+</mat-card>
