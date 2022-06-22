@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="user-profile">
 	<mat-card class="user-profile-card">
 		<mat-card-header>
@@ -11,7 +12,31 @@
 
 		<mat-card-actions>
 			<button mat-raised-button (click)="openEditProfile()">Edit</button>
-			<button mat-raised-button (click)="deleteProfile()">Delete</button>
+			<button class="delete-button" mat-raised-button (click)="deleteProfile()">Delete</button>
 		</mat-card-actions>
 	</mat-card>
-</div>
+
+	<h2>Favorite Movies</h2>
+	<div class="fav-movie-card-container">
+		<mat-card class="movie-card" *ngFor="let movie of favMovies; let i=index;">
+			<mat-dialog-content>
+				<mat-card-title>{{movie.Title}}</mat-card-title>
+				<mat-card-subtitle><img src={{movie.ImagePath}} /></mat-card-subtitle>
+				<!-- <p>{{movie.Description}} </p> -->
+				<p>
+					<b>Genre: </b>
+					{{movie.Genre.Name}}
+
+					<br>
+					<b>Directed by </b>
+					{{movie.Director.Name}}
+				</p>
+
+			</mat-dialog-content>
+			<mat-card-actions>
+				<button mat-raised-button class="removeFromFavList-button" (click)="removeFavorite(movie._id)">
+					Remove
+				</button>
+			</mat-card-actions>
+		</mat-card>
+	</div>

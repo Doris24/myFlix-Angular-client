@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{data.Title}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-card-subtitle><img src={{data.ImagePath}} /></mat-card-subtitle>
+        <p>{{data.Description}}</p>
+        <p><b>Genre: </b>{{data.Genre}}</p>
+        <p><b>Director: </b>{{data.Director}}</p>
+        <mat-dialog-actions>
+            <button mat-raised-button mat-dialog-close="Close">Close</button>
+        </mat-dialog-actions>
+    </mat-card-content>
+
+</mat-card>

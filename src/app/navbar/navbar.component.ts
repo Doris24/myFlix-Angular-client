@@ -15,10 +15,17 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public condition = localStorage.getItem('token') ? true : false;
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['welcome']);
+  }
 
   openProfilePage(): void {
     this.router.navigate(['profile']);
+  }
+
+  openMovieCards(): void {
+    this.router.navigate(['movies']);
   }
 
 

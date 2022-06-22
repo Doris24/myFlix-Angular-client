@@ -22,7 +22,6 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 // src/app/app.module.ts
 import { RouterModule, Routes } from '@angular/router';
-import { LogoutComponent } from './logout/logout.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,7 +29,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { GenreComponent } from './genre/genre.component';
 import { DirectorComponent } from './director/director.component';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { SynopsisComponent } from './synopsis/synopsis.component';
+
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -46,13 +46,12 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     MovieCardComponent,
     WelcomePageComponent,
-    LogoutComponent,
     NavbarComponent,
     UserProfileComponent,
     EditUserProfileComponent,
     GenreComponent,
     DirectorComponent,
-    MovieDetailsComponent
+    SynopsisComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -2,12 +2,10 @@
     <mat-card-header>
         <mat-card-title>{{data.Name}}</mat-card-title>
     </mat-card-header>
-
     <mat-card-content>
-
-        <mat-dialog-actions>
-            <button mat-raised-button mat-dialog-close="Close">Close</button>
-        </mat-dialog-actions>
+        {{data.Description}}
     </mat-card-content>
-
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close="Close">Close</button>
+    </mat-dialog-actions>
 </mat-card>

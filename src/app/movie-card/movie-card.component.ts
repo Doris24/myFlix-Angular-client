@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatDialog } from '@angular/material/dialog';
 import { GenreComponent } from '../genre/genre.component';
-import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { DirectorComponent } from '../director/director.component';
+import { SynopsisComponent } from '../synopsis/synopsis.component';
 ////
 
 @Component({
@@ -13,7 +13,10 @@ import { DirectorComponent } from '../director/director.component';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
+  user: any[] = [];
+  username: any = localStorage.getItem('user');
   movies: any[] = [];
+  favMovies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -23,29 +26,39 @@ export class MovieCardComponent {
   //called when component has fully been mounted
   ngOnInit(): void {
     this.getMovies();
+    this.getFavoriteMovies();
   }
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
+      // console.log(this.movies);
       return this.movies;
     });
   }
 
+  getUser(): void {
+    const username = localStorage.getItem('user');
+    if (username) {
+      this.fetchApiData.getUser().subscribe((resp: any) => {
+        this.user = resp;
+        console.log(this.user);
+        return this.user;
+      });
+    }
+  }
+
   openGenreDialog(
     name: string,
-    description: string
+    description: string,
   ): void {
-    this.dialog.open(GenreComponent), {
+    this.dialog.open(GenreComponent, {
       data: {
         Name: name,
-        Descripton: description,
+        Description: description,
       },
-      width: '300px'
-    }
-    console.log('Genre: ' + name);
-
+      maxWidth: '400px'
+    });
   }
 
   openDirectorDialog(
@@ -53,14 +66,14 @@ export class MovieCardComponent {
     birth: string,
     bio: string
   ): void {
-    this.dialog.open(DirectorComponent), {
+    this.dialog.open(DirectorComponent, {
       data: {
         Name: name,
         Birth: birth,
         Bio: bio
       },
-      width: '300px'
-    }
+      maxWidth: '400px'
+    });
   }
 
   openMovieDetailsDialog(
@@ -70,7 +83,7 @@ export class MovieCardComponent {
     genre: string,
     director: string
   ): void {
-    this.dialog.open(MovieDetailsComponent, {
+    this.dialog.open(SynopsisComponent, {
       data: {
         Title: title,
         ImagePath: imagePath,
@@ -78,7 +91,41 @@ export class MovieCardComponent {
         Genre: genre,
         Director: director,
       },
-      width: '500px',
+      width: '400px',
     });
   }
+
+  getFavoriteMovies(): void {
+    this.fetchApiData.getFavMovies().subscribe((resp) => {
+      this.favMovies = resp;
+      // console.log('getFavorites');
+      return this.favMovies;
+    })
+  }
+
+  addFavorite(id: string): void {
+    this.fetchApiData.addMovieToFavMovies(id).subscribe((resp: any) => {
+      // console.log(resp);
+      this.favMovies = resp;
+      console.log('added');
+
+      this.ngOnInit();
+    });
+  }
+
+  removeFavorite(id: string): void {
+    this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
+      this.favMovies = resp;
+      console.log('removed');
+
+      this.ngOnInit();
+      // return this.favMovies;
+    });
+  }
+
+  isFavorite(id: string): boolean {
+    console.log(id);
+    return this.favMovies.includes(id);
+  }
+
 }
