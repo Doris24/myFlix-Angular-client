@@ -14,9 +14,8 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
 })
 export class MovieCardComponent {
   user: any[] = [];
-  username: any = localStorage.getItem('user');
   movies: any[] = [];
-  favMovies: any[] = [];
+  // favMovies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -26,7 +25,6 @@ export class MovieCardComponent {
   //called when component has fully been mounted
   ngOnInit(): void {
     this.getMovies();
-    this.getFavoriteMovies();
   }
 
   getMovies(): void {
@@ -95,37 +93,46 @@ export class MovieCardComponent {
     });
   }
 
-  getFavoriteMovies(): void {
-    this.fetchApiData.getFavMovies().subscribe((resp) => {
-      this.favMovies = resp;
-      // console.log('getFavorites');
-      return this.favMovies;
-    })
-  }
+  // getFavoriteMovies(): void {
+  //   this.fetchApiData.getFavMovies().subscribe((resp: any) => {
+  //     this.favMovies = resp;
+  //     // console.log('favMovies: ' + this.favMovies);
+  //     // console.log('getFavorites');
+  //     return this.favMovies;
+
+  //   })
+  // }
 
   addFavorite(id: string): void {
     this.fetchApiData.addMovieToFavMovies(id).subscribe((resp: any) => {
-      // console.log(resp);
-      this.favMovies = resp;
-      console.log('added');
+      console.log(id + " added to favMovies")
 
-      this.ngOnInit();
     });
   }
 
-  removeFavorite(id: string): void {
-    this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
-      this.favMovies = resp;
-      console.log('removed');
+  // addFavorite(id: string): void {
+  //   this.fetchApiData.addMovieToFavMovies(id).subscribe((resp: any) => {
+  //     // console.log(resp);
+  //     this.favMovies = resp;
+  //     console.log('added');
+  //     console.log(id);
+  //     this.ngOnInit();
+  //     console.log('favMovies: ' + this.favMovies);
+  //   });
+  // }
 
-      this.ngOnInit();
-      // return this.favMovies;
-    });
-  }
+  // removeFavorite(id: string): void {
+  //   this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
+  //     this.favMovies = resp;
+  //     console.log('removed');
 
-  isFavorite(id: string): boolean {
-    console.log(id);
-    return this.favMovies.includes(id);
-  }
+  //     this.ngOnInit();
+  //     // return this.favMovies;
+  //   });
+  // }
+
+  // isFavorite(id: string): boolean {
+  //   return this.favMovies.includes(id);
+  // }
 
 }

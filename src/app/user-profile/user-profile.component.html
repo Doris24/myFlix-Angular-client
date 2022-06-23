@@ -18,7 +18,7 @@
 
 	<h2>Favorite Movies</h2>
 	<div class="fav-movie-card-container">
-		<mat-card class="movie-card" *ngFor="let movie of favMovies; let i=index;">
+		<mat-card class="movie-card" *ngFor="let movie of movies; let i=index;">
 			<mat-dialog-content>
 				<mat-card-title>{{movie.Title}}</mat-card-title>
 				<mat-card-subtitle><img src={{movie.ImagePath}} /></mat-card-subtitle>

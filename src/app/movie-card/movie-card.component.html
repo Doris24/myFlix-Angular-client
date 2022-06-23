@@ -23,15 +23,15 @@
 					(click)="openMovieDetailsDialog(movie.Title, movie.ImagePath, movie.Description, movie.Genre.Name, movie.Director.Name)">
 					Details
 				</button>
-				<!-- <button mat-icon-button color="warn" (click)="addFavorite(movie._id)">
+				<button mat-icon-button color="warn" (click)="addFavorite(movie._id)">
+					<mat-icon>favorite_border</mat-icon>
+				</button>
+				<!-- <button mat-button (click)="addFavorite(movie._id)" color="primary">
 					<mat-icon>favorite_border</mat-icon>
 				</button> -->
-				<button mat-button *ngIf="!isFavorite(movie._id)" (click)="addFavorite(movie._id)" color="primary">
-					<mat-icon>favorite_border</mat-icon>
-				</button>
-				<button mat-button *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)" color="primary">
+				<!-- <button mat-button *ngIf="isFavorite(movie._id)" (click)="removeFavorite(movie._id)" color="primary">
 					<mat-icon>favorite</mat-icon>
-				</button>
+				</button> -->
 
 			</mat-card-actions>
 

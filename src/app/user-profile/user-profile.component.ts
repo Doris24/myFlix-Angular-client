@@ -34,6 +34,9 @@ export class UserProfileComponent implements OnInit {
       this.fetchApiData.getUser().subscribe((resp: any) => {
         this.user = resp;
         console.log(this.user);
+        this.favMovies = resp.getFavoriteMovies;
+        console.log(this.favMovies);
+
         return this.user;
       });
     }
