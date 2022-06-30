@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
           duration: 6000,
         });
       });
-      this.router.navigate(['welcome']);
+      // this.router.navigate(['welcome']);
       this.fetchApiData.deleteUser().subscribe(() => {
         localStorage.clear();
       });

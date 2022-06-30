@@ -172,7 +172,7 @@ export class FetchApiDataService {
         }),
       })
       .pipe(
-        map(this.extractResponseData),
+        // map(this.extractResponseData),
         catchError(this.handleError));
   }
   // delete a movie from the favourite movies
@@ -186,7 +186,7 @@ export class FetchApiDataService {
         }),
       })
       .pipe(
-        map(this.extractResponseData),
+        // map(this.extractResponseData),
         catchError(this.handleError));
   }
 
