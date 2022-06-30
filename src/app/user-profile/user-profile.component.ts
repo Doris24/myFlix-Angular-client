@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
     this.getMovies();
-    this.getFavoriteMovies();
+    // this.getFavoriteMovies();
   }
 
   getUser(): void {
@@ -35,7 +35,9 @@ export class UserProfileComponent implements OnInit {
       this.fetchApiData.getUser().subscribe((resp: any) => {
         this.user = resp;
         console.log(this.user);
-        this.favMovies = resp.getFavoriteMovies;
+        this.favMovies = this.user.FavoriteMovies;
+        console.log('-------------------' + this.user.FavoriteMovies);
+        this.getFavoriteMovies()
         console.log(this.favMovies);
 
         return this.user;
