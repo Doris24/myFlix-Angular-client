@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit {
   user: any = {};
   movies: any[] = [];
   favMovies: any[] = [];
+  favMoviesView: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -74,18 +75,26 @@ export class UserProfileComponent implements OnInit {
   getFavoriteMovies(): void {
     this.fetchApiData.getFavMovies().subscribe((resp) => {
       this.favMovies = resp;
-      console.log(this.favMovies);
-
-      return this.favMovies;
+      console.log('getFM this.favMovies: ' + this.favMovies);
+      this.favMovies.map(id => {
+        const mov = this.movies.find((movie) => id == movie._id)
+        this.favMoviesView.push(mov)
+      })
     })
   }
 
+  // isFavorite(id: string): string {
+  //   if (this.favMovies.includes(id)) {
+  //     return "remove"
+  //   }
+  //   return "removed"
+  // }
+
   removeFavorite(id: string): void {
     this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
-      this.favMovies = resp;
-      console.log(this.favMovies);
-      this.ngOnInit();
-      // return this.favMovies;
+      console.log('removed');
+      console.log('this.favMovies: ' + this.favMovies);
+      // return this.getFavoriteMovies();
     });
   }
 }

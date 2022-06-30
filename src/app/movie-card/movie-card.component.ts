@@ -15,7 +15,7 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
 export class MovieCardComponent {
   user: any[] = [];
   movies: any[] = [];
-  // favMovies: any[] = [];
+  favMovies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -25,6 +25,7 @@ export class MovieCardComponent {
   //called when component has fully been mounted
   ngOnInit(): void {
     this.getMovies();
+    this.getFavoriteMovies();
   }
 
   getMovies(): void {
@@ -93,19 +94,27 @@ export class MovieCardComponent {
     });
   }
 
-  // getFavoriteMovies(): void {
-  //   this.fetchApiData.getFavMovies().subscribe((resp: any) => {
-  //     this.favMovies = resp;
-  //     // console.log('favMovies: ' + this.favMovies);
-  //     // console.log('getFavorites');
-  //     return this.favMovies;
+  getFavoriteMovies(): void {
+    this.fetchApiData.getFavMovies().subscribe((resp: any) => {
+      this.favMovies = resp;
+      console.log('favMovies: ' + this.favMovies);
+      // console.log('getFavorites');
+    })
+  }
 
-  //   })
-  // }
+  addOrRemoveFavorite = (id: string) => {
+    console.log("this.isFavorite(id)==", this.isFavorite(id))
+    if (this.isFavorite(id) == "favorite") {
+      return this.removeFavorite(id)
+    } else {
+      return this.addFavorite(id)
+    }
+  }
 
   addFavorite(id: string): void {
     this.fetchApiData.addMovieToFavMovies(id).subscribe((resp: any) => {
       console.log(id + " added to favMovies")
+      this.getFavoriteMovies();
 
     });
   }
@@ -121,18 +130,18 @@ export class MovieCardComponent {
   //   });
   // }
 
-  // removeFavorite(id: string): void {
-  //   this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
-  //     this.favMovies = resp;
-  //     console.log('removed');
+  removeFavorite(id: string): void {
+    this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
+      console.log('removed');
+      this.getFavoriteMovies();
+    });
+  }
 
-  //     this.ngOnInit();
-  //     // return this.favMovies;
-  //   });
-  // }
-
-  // isFavorite(id: string): boolean {
-  //   return this.favMovies.includes(id);
-  // }
+  isFavorite(id: string): string {
+    if (this.favMovies.includes(id)) {
+      return "favorite"
+    }
+    return "favorite_border"
+  }
 
 }

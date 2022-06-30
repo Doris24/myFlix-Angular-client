@@ -1,3 +1,8 @@
+app-navbar .navbar-button-profile {
+    font-weight: bold;
+    text-decoration: underline
+}
+
 .user-profile {
     display: flex;
     flex-direction: column;
@@ -5,6 +10,7 @@
     justify-content: center;
     padding: 20px;
     padding-top: 60px;
+    // font-size: 20px;
 }
 
 .mat-card {
@@ -13,18 +19,30 @@
     align-items: center;
     justify-content: center;
     // width: 100%;
-    min-width: 250px;
-    margin: 5px 5px;
+    min-width: 200px;
+    // margin: 5px 5px;
     padding: 20px;
 }
 
 mat-card-title {
     margin: 0 auto;
+    margin-bottom: 5px;
     padding: 10px 0;
+    font-size: 20px;
 }
 
 mat-card {
     max-width: 250px;
+}
+
+mat-card-content p {
+    font-size: 15px;
+}
+
+
+mat-dialog-content p {
+    font-size: 13px;
+    margin: 0;
 }
 
 mat-card-actions {
@@ -94,7 +112,7 @@ mat-card-actions {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 0px;
+    column-gap: 10px;
 }
 
 p {
