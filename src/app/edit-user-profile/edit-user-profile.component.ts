@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
   templateUrl: './edit-user-profile.component.html',
   styleUrls: ['./edit-user-profile.component.scss']
 })
+
+/**
+ * This class returns edited user data
+ */
 export class EditUserProfileComponent implements OnInit {
 
   @Input() userData: any = {};
@@ -23,6 +27,10 @@ export class EditUserProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * updates the user data
+   * @function editUser
+   */
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
       this.dialogRef.close();

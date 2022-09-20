@@ -29,6 +29,10 @@ export class UserProfileComponent implements OnInit {
     // this.getFavoriteMovies();
   }
 
+  /**
+   * gets the user data from the api
+   * @function getUser
+   */
   getUser(): void {
     const username = localStorage.getItem('user');
     if (username) {
@@ -45,6 +49,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * gets data for all movies from the api
+   * @function getAllMovies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -53,6 +61,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * opens dialog to edit the user data
+   */
   openEditProfile(): void {
     this.dialog.open(EditUserProfileComponent, {
       width: '300px',
@@ -60,6 +71,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * deletes the user profile
+   * navigates to welcome page
+   * @function deleteUser
+   */
   deleteProfile(): void {
     if (confirm('Do you want to delete your account? This cannot be undone.')) {
       this.router.navigate(['welcome']).then(() => {
@@ -74,6 +90,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * gets favorite movies list from api
+   * @function getFavMovies
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getFavMovies().subscribe((resp) => {
       this.favMovies = resp;
@@ -85,13 +105,11 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  // isFavorite(id: string): string {
-  //   if (this.favMovies.includes(id)) {
-  //     return "remove"
-  //   }
-  //   return "removed"
-  // }
-
+  /**
+   * deletes a movie from the favorite movies list
+   * @param id 
+   * @function deleteMovieFromFavMovies
+   */
   removeFavorite(id: string): void {
     this.fetchApiData.deleteMovieFromFavMovies(id).subscribe((resp: any) => {
       console.log('removed');

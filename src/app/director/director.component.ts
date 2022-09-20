@@ -6,6 +6,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './director.component.html',
   styleUrls: ['./director.component.scss']
 })
+
+/**
+ * This class returns data about the director
+ */
+
 export class DirectorComponent implements OnInit {
 
   constructor(
