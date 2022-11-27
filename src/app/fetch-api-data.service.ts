@@ -8,7 +8,9 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'https://movyis.herokuapp.com/';
+// const apiUrl = 'https://movyis.herokuapp.com/';
+const apiUrl = 'https://movyis-api.onrender.com';
+
 
 @Injectable({
   providedIn: 'root'
